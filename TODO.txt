@@ -1,0 +1,4 @@
+1. Use the same file
+2. Hidden some parts of file
+3. Browser and server (window)
+
