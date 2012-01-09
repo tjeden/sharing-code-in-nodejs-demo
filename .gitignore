@@ -1,0 +1,36 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+
+# Rails extras
+public/assets/
+config/configuration.yml
+config/database.yml
+config/resque.yml
+config/initializers/mailer.rb
+config/initializers/omniauth.rb
+
+.yardoc/
+.rvmrc
+
+# System/IDE files
+Desktop.ini
+Thumbs.db
+nbproject
+.DS_Store
+.idea
+.redcar
+\#*#
+*.swp
+*.swo
+*~
+selenium-server-standalone-2.2.0.jar
+dump.rdb
+
+public/system/
+
+# Simplecov output
+coverage
+node_modules/

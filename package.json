@@ -1,0 +1,13 @@
+{
+  "author": "",
+  "name": "back and front",
+  "version": "0.0.0",
+  "dependencies": {
+    "express" : "~2.5.5",
+    "jade": "~0.15.2",
+  },
+  "directories": {
+  },
+  "devDependencies": {
+  }
+}
