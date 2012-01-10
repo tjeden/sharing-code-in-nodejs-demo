@@ -9,4 +9,9 @@ var Task = function() {
   }
 };
 
-module.exports = Task;
+try {
+  module.exports = Task;
+} catch(err) {
+  console.log('client side');
+}
+
