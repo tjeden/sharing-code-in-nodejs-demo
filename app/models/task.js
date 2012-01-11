@@ -1,10 +1,12 @@
 var Task = function() {
   return {
     create: function() {
-      console.log('created');
+      if (this.validate())
+        console.log('created');
     },
     validate: function() {
       console.log('validated');
+      return true;
     }
   }
 };
