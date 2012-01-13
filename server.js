@@ -7,10 +7,16 @@ var requirejs = require('requirejs'),
 // Boiler plate stuff - as per r.js's instructions
 requirejs.config({ nodeRequire: require });
 
+var PublicTask = null;
 var Task = null;
 
 requirejs(["./models/task"], function(task) {
-  Task = task;
+  PublicTask = task;
+});
+
+requirejs(["./private_models/task"], function(private_task) {
+  Task = private_task;
+  Task.prototype = new PublicTask();
 });
 
 app = express.createServer();
@@ -18,6 +24,7 @@ app = express.createServer();
 app.get('/', function(req, res) {
   var task = new Task();
   task.create();
+  task.connectDB();
 
   res.render('index.jade');
 });
