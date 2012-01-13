@@ -4,3 +4,12 @@ requirejs(["task"], function(task) {
 
   a = new Task();
 });
+
+# Distinguish
+if (module && module.exports) { 
+  module.exports = ... 
+} else if (define) { 
+  // support AMD 
+} else if (window) { 
+  //       window.nameThing = ... 
+} 
