@@ -22,35 +22,8 @@ app.get('/', function(req, res) {
   res.render('index.jade');
 });
 
-app.get('/scripts/require.js', function(req, res){
-  fs.readFile('./node_modules/requirejs/require.js', function(err, file) {  
-    if(err) {  
-      console.log('err');
-    }  
-    res.send(file);
-  });  
-});
-
-console.log(__dirname + '/scripts')
 app.use("/scripts", express.static(__dirname + '/scripts'));
-
-app.get('/scripts/task.js', function(req, res){
-  fs.readFile('./models/task.js', function(err, file) {  
-    if(err) {  
-      console.log('err');
-    }  
-    res.send(file);
-  });  
-});
-
-app.get('/scripts/2main.js', function(req, res){
-  fs.readFile('./scripts/main.js', function(err, file) {  
-    if(err) {  
-      console.log('err');
-    }  
-    res.send(file);
-  });  
-});
+app.use("/scripts/models", express.static(__dirname + '/models'));
 
 app.listen('7777');
 
