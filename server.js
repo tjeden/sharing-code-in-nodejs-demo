@@ -1,8 +1,17 @@
-var http = require('http'), 
+var requirejs = require('requirejs'), 
+    http = require('http'), 
     jade = require('jade'),
     express = require('express'),
-    fs = require("fs"), 
-    Task = require('./app/models/task');
+    fs = require("fs");
+
+// Boiler plate stuff - as per r.js's instructions
+requirejs.config({ nodeRequire: require });
+
+var Task = null;
+
+requirejs(["./models/task"], function(task) {
+  Task = task;
+});
 
 app = express.createServer();
 
@@ -13,9 +22,29 @@ app.get('/', function(req, res) {
   res.render('index.jade');
 });
 
-app.get('/task.js', function(req, res){
-  req.accepts('text/javascript');
-  fs.readFile('./app/models/task.js', function(err, file) {  
+app.get('/scripts/require.js', function(req, res){
+  fs.readFile('./node_modules/requirejs/require.js', function(err, file) {  
+    if(err) {  
+      console.log('err');
+    }  
+    res.send(file);
+  });  
+});
+
+console.log(__dirname + '/scripts')
+app.use("/scripts", express.static(__dirname + '/scripts'));
+
+app.get('/scripts/task.js', function(req, res){
+  fs.readFile('./models/task.js', function(err, file) {  
+    if(err) {  
+      console.log('err');
+    }  
+    res.send(file);
+  });  
+});
+
+app.get('/scripts/2main.js', function(req, res){
+  fs.readFile('./scripts/main.js', function(err, file) {  
     if(err) {  
       console.log('err');
     }  
@@ -24,8 +53,5 @@ app.get('/task.js', function(req, res){
 });
 
 app.listen('7777');
-
-var bundle = require('browserify')(__dirname + '/app/models/task.js');
-app.use(bundle);
 
 console.log('Up and running.');
