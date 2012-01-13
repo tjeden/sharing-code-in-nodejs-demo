@@ -14,6 +14,8 @@ https://github.com/substack/dnode
 http://nowjs.com/
 # Node browserify
 https://github.com/substack/node-browserify
+# Gemini.js
+Run node.js on server
 # Stack Overflow
 http://stackoverflow.com/questions/3225251/how-can-i-share-code-between-node-js-and-the-browser
 

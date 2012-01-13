@@ -7,16 +7,16 @@ var requirejs = require('requirejs'),
 // Boiler plate stuff - as per r.js's instructions
 requirejs.config({ nodeRequire: require });
 
-var PublicTask = null;
+var ClientTask = null;
 var Task = null;
 
 requirejs(["./models/task"], function(task) {
-  PublicTask = task;
+  ClientTask = task;
 });
 
 requirejs(["./private_models/task"], function(private_task) {
   Task = private_task;
-  Task.prototype = new PublicTask();
+  Task.prototype = new ClientTask();
 });
 
 app = express.createServer();
