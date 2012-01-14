@@ -13,7 +13,7 @@ Then you can play with `task`:
 ``` javascript
 var task = new Task();
 task.validate();  // It works
-task.DBconnect(); // It is undefined
+task.DBconnect(); // It is undefined in the client
 ```
 
 
