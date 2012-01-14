@@ -7,15 +7,15 @@ var requirejs = require('requirejs'),
 // Boiler plate stuff - as per r.js's instructions
 requirejs.config({ nodeRequire: require });
 
-var ClientTask = null;
-var Task = null;
 
-requirejs(["./models/task"], function(task) {
+var ClientTask = null;
+requirejs(["./models/client/task"], function(task) {
   ClientTask = task;
 });
 
-requirejs(["./private_models/task"], function(private_task) {
-  Task = private_task;
+var Task = null;
+requirejs(["./models/server/task"], function(task) {
+  Task = task;
   Task.prototype = new ClientTask();
 });
 
@@ -23,14 +23,16 @@ app = express.createServer();
 
 app.get('/', function(req, res) {
   var task = new Task();
+  
+  // Both method should work
   task.create();
-  task.connectDB();
+  task.DBconnect();
 
   res.render('index.jade');
 });
 
 app.use("/scripts", express.static(__dirname + '/scripts'));
-app.use("/scripts/models", express.static(__dirname + '/models'));
+app.use("/scripts/models", express.static(__dirname + '/models/client'));
 
 app.listen('7777');
 

@@ -1,6 +1,6 @@
 define(function(require) {
   return function(){
-    this.connectDB = function() {
+    this.DBconnect = function() {
       console.log('connected');
     }
   }
